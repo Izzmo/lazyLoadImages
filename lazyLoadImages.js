@@ -43,9 +43,15 @@ define([], function () {
       }
     });
   }
+  
+  function setBodyMutationObserver() {
+    var ob = new MutationObserver(lazyLoadImages);
+    ob.observe(document.querySelector('body'), { attributes: false, childList: true, characterData: true });
+  }
 
   return function () {  
     lazyLoadImages();
     setScrollEventHandler();
+    setBodyMutationObserver();
   };
 });
